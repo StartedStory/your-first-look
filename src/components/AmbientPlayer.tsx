@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import { Volume2, VolumeX, Maximize2, SkipForward, Repeat, Search, Bookmark, Share2 } from "lucide-react";
+import { Volume2, VolumeX, Maximize2, SkipForward, Repeat, Search, Bookmark, Share2, ChevronRight } from "lucide-react";
 import { VIDEOS, type Category } from "@/data/videos";
 import { CategoryRail } from "./CategoryRail";
 
@@ -64,7 +64,7 @@ export function AmbientPlayer() {
 
       {/* Top-center wordmark */}
       <h1 className="absolute left-1/2 top-3 z-20 -translate-x-1/2 font-serif text-2xl italic tracking-wide text-white drop-shadow-sm md:text-3xl">
-        AmbientLife
+        MB.ent
       </h1>
 
       {/* Top-right location */}
@@ -78,41 +78,40 @@ export function AmbientPlayer() {
 
       {/* Bottom-left actions */}
       <div className="absolute bottom-5 left-5 z-20 flex items-center gap-2">
-        <button className="rounded-sm border border-white/40 bg-black/20 px-3 py-1 font-sans text-[11px] uppercase tracking-widest text-white/90 backdrop-blur-sm transition hover:bg-white/10">
+        <button className="cursor-pointer rounded-sm border border-white/40 bg-black/20 px-3 py-1 font-sans text-[11px] uppercase tracking-widest text-white/90 backdrop-blur-sm transition hover:bg-white/10">
           Upgrade
         </button>
-        <button className="rounded-sm border border-white/40 bg-black/20 px-3 py-1 font-sans text-[11px] uppercase tracking-widest text-white/90 backdrop-blur-sm transition hover:bg-white/10">
+        <button className="cursor-pointer rounded-sm border border-white/40 bg-black/20 px-3 py-1 font-sans text-[11px] uppercase tracking-widest text-white/90 backdrop-blur-sm transition hover:bg-white/10">
           Submit yours
         </button>
         <div className="ml-2 flex items-center gap-3 text-white/85">
-          <button title="Share" className="transition hover:text-white"><Share2 className="h-4 w-4" /></button>
-          <button title="Save" className="transition hover:text-white"><Bookmark className="h-4 w-4" /></button>
+          <button title="Share" className="cursor-pointer transition hover:text-white"><Share2 className="h-4 w-4" /></button>
+          <button title="Save" className="cursor-pointer transition hover:text-white"><Bookmark className="h-4 w-4" /></button>
         </div>
       </div>
 
       {/* Bottom-center search-like next */}
-      <div className="absolute bottom-5 left-1/2 z-20 -translate-x-1/2">
+      <div className="absolute right-5 top-1/2 z-20 -translate-y-1/2">
         <button
           onClick={next}
-          className="flex items-center gap-3 rounded-full border border-white/40 bg-black/25 px-5 py-2 font-serif text-sm italic text-white/90 backdrop-blur-md transition hover:bg-black/40"
+          className="flex items-center rounded-full border border-white/40 bg-black/25 p-2 font-serif text-sm italic text-white/90 backdrop-blur-md transition hover:bg-black/40 cursor-pointer"
         >
-          <span>Open a window somewhere in the world</span>
-          <Search className="h-4 w-4" />
+          <ChevronRight className="h-4 w-4" />
         </button>
       </div>
 
       {/* Bottom-right controls */}
       <div className="absolute bottom-5 right-5 z-20 flex items-center gap-3 text-white/85">
-        <button title="Loop" onClick={() => setLoop((l) => !l)} className={`transition hover:text-white ${loop ? "text-white" : ""}`}>
+        <button title="Loop" onClick={() => setLoop((l) => !l)} className={`cursor-pointer transition hover:text-white ${loop ? "text-white" : ""}`}>
           <Repeat className="h-4 w-4" />
         </button>
-        <button title="Next" onClick={next} className="transition hover:text-white">
+        <button title="Next" onClick={next} className="cursor-pointer transition hover:text-white">
           <SkipForward className="h-4 w-4" />
         </button>
-        <button title="Mute" onClick={() => setMuted((m) => !m)} className="transition hover:text-white">
+        <button title="Mute" onClick={() => setMuted((m) => !m)} className="cursor-pointer transition hover:text-white">
           {muted ? <VolumeX className="h-4 w-4" /> : <Volume2 className="h-4 w-4" />}
         </button>
-        <button title="Fullscreen" onClick={toggleFullscreen} className="transition hover:text-white">
+        <button title="Fullscreen" onClick={toggleFullscreen} className="cursor-pointer transition hover:text-white">
           <Maximize2 className="h-4 w-4" />
         </button>
       </div>

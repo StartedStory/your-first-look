@@ -21,7 +21,7 @@ type Props = {
 
 export function CategoryRail({ active, onSelect }: Props) {
   return (
-    <div className="pointer-events-auto absolute right-3 top-1/2 z-20 -translate-y-1/2">
+    <div className="pointer-events-auto absolute left-3 top-1/2 z-20 -translate-y-1/2">
       <ul className="flex flex-col items-center gap-1 rounded-full bg-black/15 px-1 py-2 backdrop-blur-sm">
         {CATEGORIES.map((c) => {
           const Icon = ICONS[c];
