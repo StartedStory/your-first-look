@@ -14,16 +14,134 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      profiles: {
+        Row: {
+          avatar_url: string | null
+          created_at: string
+          display_name: string | null
+          id: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          avatar_url?: string | null
+          created_at?: string
+          display_name?: string | null
+          id?: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          avatar_url?: string | null
+          created_at?: string
+          display_name?: string | null
+          id?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      user_roles: {
+        Row: {
+          created_at: string
+          id: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
+        }
+        Relationships: []
+      }
+      videos: {
+        Row: {
+          category: Database["public"]["Enums"]["video_category"]
+          created_at: string
+          description: string | null
+          duration_seconds: number | null
+          id: string
+          location: string | null
+          size_bytes: number | null
+          status: Database["public"]["Enums"]["video_status"]
+          thumbnail_path: string | null
+          thumbnail_url: string | null
+          title: string
+          updated_at: string
+          user_id: string
+          video_path: string
+          video_url: string | null
+        }
+        Insert: {
+          category?: Database["public"]["Enums"]["video_category"]
+          created_at?: string
+          description?: string | null
+          duration_seconds?: number | null
+          id?: string
+          location?: string | null
+          size_bytes?: number | null
+          status?: Database["public"]["Enums"]["video_status"]
+          thumbnail_path?: string | null
+          thumbnail_url?: string | null
+          title: string
+          updated_at?: string
+          user_id: string
+          video_path: string
+          video_url?: string | null
+        }
+        Update: {
+          category?: Database["public"]["Enums"]["video_category"]
+          created_at?: string
+          description?: string | null
+          duration_seconds?: number | null
+          id?: string
+          location?: string | null
+          size_bytes?: number | null
+          status?: Database["public"]["Enums"]["video_status"]
+          thumbnail_path?: string | null
+          thumbnail_url?: string | null
+          title?: string
+          updated_at?: string
+          user_id?: string
+          video_path?: string
+          video_url?: string | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
     }
     Enums: {
-      [_ in never]: never
+      app_role: "admin" | "moderator" | "user"
+      video_category:
+        | "Window Views"
+        | "Driving"
+        | "Cooking"
+        | "Fireplace"
+        | "Rain"
+        | "Nature"
+        | "Studio"
+        | "City Walks"
+        | "Night"
+      video_status: "pending" | "approved" | "rejected"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +268,20 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      app_role: ["admin", "moderator", "user"],
+      video_category: [
+        "Window Views",
+        "Driving",
+        "Cooking",
+        "Fireplace",
+        "Rain",
+        "Nature",
+        "Studio",
+        "City Walks",
+        "Night",
+      ],
+      video_status: ["pending", "approved", "rejected"],
+    },
   },
 } as const
