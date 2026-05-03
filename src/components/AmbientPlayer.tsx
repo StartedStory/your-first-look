@@ -22,16 +22,20 @@ export function AmbientPlayer() {
     (async () => {
       const { data, error } = await supabase
         .from("videos")
-        .select("id, title, location, category, video_url, created_at, profiles:profiles!videos_user_id_fkey(display_name)")
+        .select("id, title, location, category, video_url, created_at, user_id")
         .eq("status", "approved")
         .order("created_at", { ascending: false })
         .limit(200);
 
       if (cancelled) return;
-      if (error || !data || data.length === 0) {
-        // keep mocks
-        return;
-      }
+      if (error || !data || data.length === 0) return;
+
+      const userIds = Array.from(new Set(data.map((v) => v.user_id)));
+      const { data: profs } = await supabase
+        .from("profiles")
+        .select("user_id, display_name")
+        .in("user_id", userIds);
+      const nameMap = new Map((profs ?? []).map((p) => [p.user_id, p.display_name]));
 
       const mapped: AmbientVideo[] = data
         .filter((v) => v.video_url)
@@ -40,15 +44,13 @@ export function AmbientPlayer() {
           return {
             id: v.id,
             title: v.title,
-            // @ts-expect-error joined relation
-            author: v.profiles?.display_name ?? "Anonymous",
+            author: nameMap.get(v.user_id) ?? "Anonymous",
             location: v.location ?? "Somewhere",
             date: `${created.getHours().toString().padStart(2, "0")}:${created.getMinutes().toString().padStart(2, "0")}, ${created.toLocaleString("en-US", { month: "long", year: "numeric" })}`,
             category: v.category as Category,
             src: v.video_url as string,
           };
         });
-      // Mix real submissions in front, append mocks for variety on a young site
       setVideos([...mapped, ...MOCK_VIDEOS]);
     })();
     return () => { cancelled = true; };
