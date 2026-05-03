@@ -1,26 +1,30 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { AmbientPlayer } from "@/components/AmbientPlayer";
 
 export const Route = createFileRoute("/")({
   component: Index,
+  head: () => ({
+    meta: [
+      { title: "AmbientLife — calm windows on the world" },
+      {
+        name: "description",
+        content:
+          "Slow, ambient video from real lives around the world. Open a window, hear the rain, watch a quiet drive — calm content for focus and rest.",
+      },
+      { property: "og:title", content: "AmbientLife — calm windows on the world" },
+      {
+        property: "og:description",
+        content: "A minimalist platform for ambient lifestyle videos. The opposite of doomscrolling.",
+      },
+    ],
+  }),
 });
 
-// IMPORTANT: Replace this placeholder. For sites with multiple pages (About, Services, Contact, etc.),
-// create separate route files (about.tsx, services.tsx, contact.tsx) — don't put all pages in this file.
-function PlaceholderIndex() {
-  return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
-  );
-}
-
 function Index() {
-  return <PlaceholderIndex />;
+  return (
+    <main>
+      <h1 className="sr-only">AmbientLife — ambient lifestyle videos from around the world</h1>
+      <AmbientPlayer />
+    </main>
+  );
 }
