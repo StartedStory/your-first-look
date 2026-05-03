@@ -29,14 +29,18 @@ export const Route = createRootRoute({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
+      { title: "MB.ent" },
+      { name: "description", content: "Your First Look is a web application for showcasing and exploring initial project concepts and designs." },
       { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { property: "og:title", content: "MB.ent" },
+      { property: "og:description", content: "Your First Look is a web application for showcasing and exploring initial project concepts and designs." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:title", content: "MB.ent" },
+      { name: "twitter:description", content: "Your First Look is a web application for showcasing and exploring initial project concepts and designs." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/eefc56a0-833b-4fc1-bf90-60f3f0935f28/id-preview-b3f2af94--8b7d6cca-63fa-4ee4-8391-545a054dd7a7.lovable.app-1777813597780.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/eefc56a0-833b-4fc1-bf90-60f3f0935f28/id-preview-b3f2af94--8b7d6cca-63fa-4ee4-8391-545a054dd7a7.lovable.app-1777813597780.png" },
     ],
     links: [
       {
